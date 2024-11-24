@@ -1,0 +1,17 @@
+Create a validation form: 
+    All styles should flow the style of video.
+    show error on each required field.
+    show output on submit under the form.
+
+
+    impl:
+        components:
+            ✔ 1.input @done (11/24/2024, 12:00:58 AM)
+            ✔ 2.button @done (11/24/2024, 10:46:43 AM)
+            ☐ 3.datepicker
+            ☐ 4.select
+            ☐ 5.dropzone
+            
+
+note: 
+    use nextjs, tailwind, axios to create a new project
