@@ -8,9 +8,9 @@ Create a validation form:
         components:
             ✔ 1.input @done (11/24/2024, 12:00:58 AM)
             ✔ 2.button @done (11/24/2024, 10:46:43 AM)
-            ☐ 3.datepicker
-            ☐ 4.select
-            ☐ 5.dropzone
+            ✔ 3.date-picker @done (11/24/2024, 2:16:10 PM)
+            ✔ 4.select @done (11/24/2024, 2:16:12 PM)
+            ✔ 5.drop-zone @done (11/24/2024, 4:01:06 PM)
             
 
 note: 

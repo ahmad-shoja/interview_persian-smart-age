@@ -1,13 +1,14 @@
 "use client";
 import Button from "./components/button";
 import DatePicker from "./components/date-picker";
+import Dropzone from "./components/dropzone";
 // import DatePicker from "react-multi-date-picker";
 import Input from "./components/input";
 import Select from "./components/select";
 
 export default function Home() {
   return (
-    <main className="p-8 bg-[#f1f3f3]">
+    <main className="p-8 bg-[#f1f3f3] flex flex-col gap-5">
       <Input
         onChange={({ currentTarget }) => {
           console.log(currentTarget.value);
@@ -31,6 +32,7 @@ export default function Home() {
       ></Select>
 
       <DatePicker label="تاریخ تولد" />
+      <Dropzone />
     </main>
   );
 }
