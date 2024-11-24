@@ -1,22 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import MultiDatePicker from "react-multi-date-picker";
 import farsi from "react-date-object/locales/persian_fa";
 import persian from "react-date-object/calendars/persian";
 type PropsTypes = {
   label?: string;
-  onChange?: (newValue: { value: string; label: string }) => void;
-  initialValue?: string;
+  onChange?: (milliseconds?: number) => void;
   error?: string;
 };
-export default function DatePicker({
-  onChange,
-  label,
-  error,
-  initialValue,
-  ...props
-}: PropsTypes) {
+export default function DatePicker({ onChange, label, error }: PropsTypes) {
   const inputId = React.useId();
-  const [value, setValue] = useState(initialValue);
 
   const errorMarkup = (
     <div className="flex items-center ps-2 gap-2">
@@ -44,6 +36,9 @@ export default function DatePicker({
         <MultiDatePicker
           calendar={persian}
           locale={farsi}
+          onChange={(value) => {
+            onChange?.(value?.millisecond);
+          }}
           inputClass="peer
           w-full
           text-base
