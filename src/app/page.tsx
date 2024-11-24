@@ -8,7 +8,23 @@ import { toFormikValidate } from "zod-formik-adapter";
 import DatePicker from "./components/date-picker";
 import Select from "./components/select";
 import Dropzone from "./components/dropzone";
+import axios from "axios";
 export default function Home() {
+  const postData = async (values: ResumeType) => {
+    try {
+      const response = await axios.post("/api/resume", values, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("Form submitted successfully");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
   const formik: Formik<ResumeType> = useFormik<ResumeType>({
     initialValues: {
       name: "",
@@ -20,9 +36,7 @@ export default function Home() {
       resume: null,
     },
     validate: toFormikValidate(resumeSchema),
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: postData,
   });
 
   return (
