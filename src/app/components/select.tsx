@@ -90,7 +90,6 @@ export default function Select({
           htmlFor={inputId}
           absolute
           w-full
-          h-52
           rounded-md
           bg-white
           shadow-lg

@@ -34,7 +34,13 @@ export default function Dropzone({ onFileSelect }: PropTypes) {
         className="flex flex-col gap-5 items-center justify-center h-72
       bg-white
       rounded-md
-        px-4"
+        px-4
+        border
+        border-dashed
+        border-gray-300
+        cursor-pointer
+        
+        "
       >
         <svg
           width="100px"
