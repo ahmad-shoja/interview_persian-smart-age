@@ -10,6 +10,7 @@ export default function Button({
   disabled,
   destructive,
   children,
+  className: pClassNames,
   ...props
 }: PropTypes) {
   const classNames = clsx({
@@ -21,7 +22,7 @@ export default function Button({
     "font-medium py-2 px-4 rounded-md ": true,
   });
   return (
-    <button className={`${classNames}`} {...props}>
+    <button className={`${classNames} ${pClassNames}`} {...props}>
       <p className="pt-1">{children}</p>
     </button>
   );

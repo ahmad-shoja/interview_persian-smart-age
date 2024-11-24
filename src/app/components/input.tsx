@@ -1,10 +1,15 @@
 import React, { InputHTMLAttributes } from "react";
 
 type PropsTypes = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
   error?: string;
 };
-export default function Input({ label, error, ...props }: PropsTypes) {
+export default function Input({
+  label,
+  error,
+  className,
+  ...props
+}: PropsTypes) {
   const inputId = React.useId();
 
   const errorMarkup = (
@@ -28,7 +33,7 @@ export default function Input({ label, error, ...props }: PropsTypes) {
   );
 
   return (
-    <div className="flex flex-col gap-1 w-full " dir="rtl">
+    <div className={`flex flex-col gap-1 w-full ${className} `} dir="rtl">
       <div className="flex flex-col relative  py-3 px-4 rounded-md bg-white border border-[#e5e7e7] focus-within:border-[#514bbe] w-full">
         <input
           {...props}

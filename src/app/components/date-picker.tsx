@@ -1,13 +1,18 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import MultiDatePicker from "react-multi-date-picker";
 import farsi from "react-date-object/locales/persian_fa";
 import persian from "react-date-object/calendars/persian";
-type PropsTypes = {
+type PropsTypes = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
-  onChange?: (milliseconds?: number) => void;
+  onChange?: (date?: string) => void;
   error?: string;
 };
-export default function DatePicker({ onChange, label, error }: PropsTypes) {
+export default function DatePicker({
+  onChange,
+  label,
+  error,
+  className,
+}: PropsTypes) {
   const inputId = React.useId();
 
   const errorMarkup = (
@@ -31,13 +36,13 @@ export default function DatePicker({ onChange, label, error }: PropsTypes) {
   );
 
   return (
-    <div className="flex flex-col gap-1 w-full " dir="rtl">
+    <div className={`flex flex-col gap-1 w-full ${className} `} dir="rtl">
       <div className="peer flex flex-col relative  py-3 px-4 rounded-md bg-white border border-[#e5e7e7] focus-within:border-[#514bbe] w-full">
         <MultiDatePicker
           calendar={persian}
           locale={farsi}
           onChange={(value) => {
-            onChange?.(value?.millisecond);
+            onChange?.(value?.format());
           }}
           inputClass="peer
           w-full

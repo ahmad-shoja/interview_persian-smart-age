@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { InputHTMLAttributes } from "react";
 
 type OptionType = {
   value: string;
   label: string;
 };
-type PropsTypes = {
+type PropsTypes = InputHTMLAttributes<HTMLInputElement> & {
   options: OptionType[];
   label?: string;
-  onChange?: (newValue: { value: string; label: string }) => void;
+  onChange?: (newValue: string) => void;
   initialValue?: string;
   error?: string;
 };
@@ -16,11 +16,11 @@ export default function Select({
   onChange,
   label,
   error,
-  initialValue,
+  className,
+  value,
   ...props
 }: PropsTypes) {
   const inputId = React.useId();
-  const [value, setValue] = useState(initialValue);
 
   const errorMarkup = (
     <div className="flex items-center ps-2 gap-2">
@@ -43,7 +43,7 @@ export default function Select({
   );
 
   return (
-    <div className="flex flex-col gap-1 w-full " dir="rtl">
+    <div className={`flex flex-col gap-1 w-full ${className} `} dir="rtl">
       <div className="peer flex flex-col relative  py-3 px-4 rounded-md bg-white border border-[#e5e7e7] focus-within:border-[#514bbe] w-full">
         <input
           {...props}
@@ -102,8 +102,7 @@ export default function Select({
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer "
                 key={value}
                 onMouseDown={() => {
-                  setValue(value);
-                  onChange?.({ value, label });
+                  onChange?.(value);
                 }}
               >
                 {label}

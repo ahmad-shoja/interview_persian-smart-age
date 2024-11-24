@@ -16,7 +16,12 @@ export default function Dropzone({ onFileSelect }: PropTypes) {
     },
     []
   );
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpeg", ".png"],
+    },
+  });
 
   return (
     <div
@@ -25,9 +30,7 @@ export default function Dropzone({ onFileSelect }: PropTypes) {
       flex-col
       gap-2
       justify-center
-      w-full
-      
-        "
+      w-full"
     >
       <div
         {...getRootProps()}
@@ -75,6 +78,29 @@ export default function Dropzone({ onFileSelect }: PropTypes) {
       </div>
       {selectedFile && (
         <div className="flex px-2 py-2 h-16 bg-white border border-gray-400 rounded-md w-full justify-between items-center">
+          <div className="flex gap-2 justify-end h-full ">
+            <div className="h-full  bg-gray-300 aspect-square rounded ">
+              {selectedFile && (
+                <img
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="thumbnail"
+                  className="w-full h-full object-cover rounded"
+                />
+              )}
+            </div>
+
+            <div className="flex flex-col items-end ">
+              <p className="text-gray-700 font-medium">
+                {selectedFile?.name || "single"}
+              </p>
+              <p className="text-gray-400 text-xs">
+                {selectedFile
+                  ? `${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB`
+                  : ""}
+              </p>
+            </div>
+          </div>
+
           <button
             className="appearance-none"
             onClick={() => setSelectedFile(null)}
@@ -90,27 +116,6 @@ export default function Dropzone({ onFileSelect }: PropTypes) {
               <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
             </svg>
           </button>
-          <div className="flex gap-2 justify-end h-full ">
-            <div className="flex flex-col items-end ">
-              <p className="text-gray-700 font-medium">
-                {selectedFile?.name || "single"}
-              </p>
-              <p className="text-gray-400 text-xs">
-                {selectedFile
-                  ? `${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB`
-                  : ""}
-              </p>
-            </div>
-            <div className="h-full  bg-gray-300 aspect-square rounded ">
-              {selectedFile && (
-                <img
-                  src={URL.createObjectURL(selectedFile)}
-                  alt="thumbnail"
-                  className="w-full h-full object-cover rounded"
-                />
-              )}
-            </div>
-          </div>
         </div>
       )}
     </div>
