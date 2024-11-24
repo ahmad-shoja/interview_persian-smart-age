@@ -1,5 +1,7 @@
 "use client";
 import Button from "./components/button";
+import DatePicker from "./components/date-picker";
+// import DatePicker from "react-multi-date-picker";
 import Input from "./components/input";
 import Select from "./components/select";
 
@@ -26,8 +28,9 @@ export default function Home() {
         }}
         initialValue="0"
         error="این فیلد اجباری است"
-        
       ></Select>
+
+      <DatePicker label="تاریخ تولد" />
     </main>
   );
 }
